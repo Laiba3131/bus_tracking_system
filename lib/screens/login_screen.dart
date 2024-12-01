@@ -23,7 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passWordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
+  bool isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,10 +68,19 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 20,
                   ),
                   CustomTextFormField(
+                    suffixIcon: isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                    suffixIconColor: Colors.black,
+                     onTapSuffixIcon: () {
+                      setState(() {
+                        isPasswordVisible = !isPasswordVisible;
+                      });
+                    },
                     controller: passWordController,
                     hintText: 'Password',
                     prefixIcon: Icons.lock,
-                    obscureText: true,
+                     obscureText: !isPasswordVisible, 
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
