@@ -10,15 +10,30 @@ class TeacherSignUpScreen extends StatelessWidget {
       title: 'Teacher Signup',
       additionalFields: [
         CustomTextFormField(
+          controller: TextEditingController(),
           hintText: 'Department',
           prefixIcon: Icons.business,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your Department';
+            }
+            return null;
+          },
         ),
         const SizedBox(height: 20),
         CustomTextFormField(
+          controller: TextEditingController(),
           hintText: 'Designation',
           prefixIcon: Icons.work,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your Designation';
+            }
+            return null;
+          },
         ),
       ],
     );
   }
 }
+
